@@ -1,3 +1,4 @@
+https://nexus-resonance-lab.lovable.app/
 # Welcome to your Lovable project
 
 ## Project info
