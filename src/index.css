@@ -8,33 +8,48 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Scientific dark theme */
+    --background: 220 30% 8%;
+    --foreground: 200 100% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 25% 12%;
+    --card-foreground: 200 100% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 25% 12%;
+    --popover-foreground: 200 100% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Quantum blue primary */
+    --primary: 210 100% 65%;
+    --primary-foreground: 220 30% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Resonance purple secondary */
+    --secondary: 270 70% 60%;
+    --secondary-foreground: 200 100% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 25% 18%;
+    --muted-foreground: 200 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neural green accent */
+    --accent: 150 80% 55%;
+    --accent-foreground: 220 30% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 200 100% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 25% 18%;
+    --input: 220 25% 15%;
+    --ring: 210 100% 65%;
+
+    /* Scientific gradients */
+    --gradient-quantum: linear-gradient(135deg, hsl(210, 100%, 65%), hsl(270, 70%, 60%));
+    --gradient-neural: linear-gradient(135deg, hsl(150, 80%, 55%), hsl(180, 70%, 50%));
+    --gradient-resonance: linear-gradient(135deg, hsl(270, 70%, 60%), hsl(300, 80%, 65%));
+    --gradient-cosmic: linear-gradient(135deg, hsl(220, 30%, 8%), hsl(270, 70%, 20%));
+
+    /* Glow effects */
+    --glow-quantum: 0 0 30px hsl(210, 100%, 65% / 0.3);
+    --glow-neural: 0 0 30px hsl(150, 80%, 55% / 0.3);
+    --glow-resonance: 0 0 30px hsl(270, 70%, 60% / 0.3);
 
     --radius: 0.5rem;
 
@@ -101,5 +116,52 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-cosmic);
+    background-attachment: fixed;
+  }
+
+  /* Quantum wave animation */
+  @keyframes quantum-wave {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+    50% { transform: translateY(-10px) rotate(180deg); opacity: 1; }
+    100% { transform: translateY(0px) rotate(360deg); opacity: 0.7; }
+  }
+
+  @keyframes resonance-pulse {
+    0% { transform: scale(1); box-shadow: var(--glow-quantum); }
+    50% { transform: scale(1.05); box-shadow: var(--glow-resonance); }
+    100% { transform: scale(1); box-shadow: var(--glow-quantum); }
+  }
+
+  @keyframes neural-glow {
+    0% { box-shadow: var(--glow-neural); }
+    50% { box-shadow: var(--glow-quantum); }
+    100% { box-shadow: var(--glow-neural); }
+  }
+
+  .quantum-wave {
+    animation: quantum-wave 4s infinite ease-in-out;
+  }
+
+  .resonance-pulse {
+    animation: resonance-pulse 3s infinite ease-in-out;
+  }
+
+  .neural-glow {
+    animation: neural-glow 2s infinite ease-in-out;
+  }
+
+  /* Mathematical typography */
+  .math-formula {
+    font-family: 'Computer Modern', 'Latin Modern Math', serif;
+    letter-spacing: 0.05em;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-quantum);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

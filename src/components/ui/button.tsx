@@ -18,6 +18,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        quantum: "bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:shadow-lg hover:shadow-primary/30 resonance-pulse",
+        neural: "bg-gradient-to-r from-accent to-primary text-primary-foreground hover:shadow-lg hover:shadow-accent/30 neural-glow",
+        resonance: "bg-gradient-to-r from-secondary to-accent text-primary-foreground hover:shadow-lg hover:shadow-secondary/30 quantum-wave",
       },
       size: {
         default: "h-10 px-4 py-2",
