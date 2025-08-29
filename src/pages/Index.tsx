@@ -7,7 +7,8 @@ import { ResonanceAnalyzer } from "@/components/ResonanceAnalyzer";
 import { HypothesisGenerator } from "@/components/HypothesisGenerator";
 import { EthicalAnalyzer } from "@/components/EthicalAnalyzer";
 import { InterdomainLearning } from "@/components/InterdomainLearning";
-import { Brain, Zap, Target, Network, Shield, Atom, Lightbulb, Rocket } from "lucide-react";
+import { ProblemFormulation } from "@/components/ProblemFormulation";
+import { Brain, Zap, Target, Network, Shield, Atom, Lightbulb, Rocket, FileText } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
@@ -56,10 +57,10 @@ const Index = () => {
             <Button 
               variant="quantum" 
               size="lg"
-              onClick={() => setActiveTab("resonance")}
+              onClick={() => setActiveTab("formulation")}
             >
-              <Zap className="h-5 w-5" />
-              Запустить анализ
+              <FileText className="h-5 w-5" />
+              Поставить задачу
             </Button>
             <Button 
               variant="neural" 
@@ -86,7 +87,11 @@ const Index = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 mb-8">
+            <TabsTrigger value="formulation" className="text-xs">
+              <FileText className="h-4 w-4 mr-1" />
+              Постановка
+            </TabsTrigger>
             <TabsTrigger value="overview" className="text-xs">
               <Atom className="h-4 w-4 mr-1" />
               Обзор
@@ -108,6 +113,10 @@ const Index = () => {
               Обучение
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="formulation">
+            <ProblemFormulation />
+          </TabsContent>
 
           <TabsContent value="overview" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
