@@ -71,43 +71,43 @@ export const ProblemFormulation = () => {
   const formulationSteps: FormulationStep[] = [
     {
       id: "description",
-      title: "Описание проблемы",
-      description: "Четкое изложение научной проблемы",
+      title: "Описание проблемы / Problem Description",
+      description: "Четкое изложение научной проблемы / Clear scientific problem statement",
       completed: !!problem.title && !!problem.description,
       icon: FileText
     },
     {
       id: "domain",
-      title: "Область исследования",
-      description: "Определение научной области и подобластей",
+      title: "Область исследования / Research Domain",
+      description: "Определение научной области и подобластей / Define scientific domain and subdomains",
       completed: !!problem.domain && problem.subDomains.length > 0,
       icon: Target
     },
     {
       id: "objectives",
-      title: "Цели и задачи",
-      description: "Формулировка целей и конкретных задач",
+      title: "Цели и задачи / Goals & Tasks",
+      description: "Формулировка целей и конкретных задач / Formulate goals and specific tasks",
       completed: problem.objectives.length > 0,
       icon: Lightbulb
     },
     {
       id: "hypotheses",
-      title: "Гипотезы",
-      description: "Предварительные гипотезы и предположения",
+      title: "Гипотезы / Hypotheses",
+      description: "Предварительные гипотезы и предположения / Preliminary hypotheses and assumptions",
       completed: problem.hypotheses.length > 0,
       icon: Brain
     },
     {
       id: "constraints",
-      title: "Ограничения",
-      description: "Определение ограничений и предположений",
+      title: "Ограничения / Constraints",
+      description: "Определение ограничений и предположений / Define constraints and assumptions",
       completed: problem.constraints.length > 0,
       icon: AlertCircle
     },
     {
       id: "criteria",
-      title: "Критерии успеха",
-      description: "Метрики для оценки успешности решения",
+      title: "Критерии успеха / Success Criteria",
+      description: "Метрики для оценки успешности решения / Metrics for evaluating solution success",
       completed: problem.successCriteria.length > 0,
       icon: CheckCircle
     }
@@ -149,10 +149,16 @@ export const ProblemFormulation = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 gradient-text">
           <FileText className="h-6 w-6" />
-          Постановка научной задачи
+          <div>
+            <div>Постановка научной задачи</div>
+            <div className="text-lg text-muted-foreground font-normal">Scientific Problem Formulation</div>
+          </div>
         </CardTitle>
         <div className="text-sm text-muted-foreground">
           Структурированное формулирование проблемы для ГРА
+          <span className="block text-xs mt-1 opacity-80">
+            Structured problem formulation for HRA
+          </span>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -160,7 +166,7 @@ export const ProblemFormulation = () => {
         <Card className="bg-muted/20 border-primary/10">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium">Прогресс формулирования</span>
+              <span className="text-sm font-medium">Прогресс формулирования / Formulation Progress</span>
               <span className="text-sm text-muted-foreground">
                 {completedSteps}/{formulationSteps.length}
               </span>

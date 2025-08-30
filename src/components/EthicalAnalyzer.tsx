@@ -93,7 +93,10 @@ export const EthicalAnalyzer = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 gradient-text">
           <Shield className="h-6 w-6" />
-          Этический анализатор
+          <div>
+            <div>Этический анализатор</div>
+            <div className="text-lg text-muted-foreground font-normal">Ethical Analyzer</div>
+          </div>
         </CardTitle>
         <div className="text-sm text-muted-foreground math-formula">
           Γ = ∑ sign(dI<sub>i</sub>/dt) · γ<sub>ij</sub>
@@ -110,12 +113,12 @@ export const EthicalAnalyzer = () => {
             {isAnalyzing ? (
               <>
                 <Brain className="h-4 w-4 animate-spin" />
-                Анализ этичности...
+                Анализ этичности... / Analyzing Ethics...
               </>
             ) : (
               <>
                 <Shield className="h-4 w-4" />
-                Запустить анализ
+                Запустить анализ / Run Analysis
               </>
             )}
           </Button>
@@ -128,7 +131,7 @@ export const EthicalAnalyzer = () => {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-semibold text-primary">
-                    Общий этический рейтинг
+                    Общий этический рейтинг / Overall Ethical Rating
                   </h3>
                   <span className={`text-2xl font-bold ${getScoreColor(analysis.totalScore)}`}>
                     {analysis.totalScore}/100
@@ -144,7 +147,7 @@ export const EthicalAnalyzer = () => {
             {/* Факторы анализа */}
             <div>
               <h3 className="text-lg font-semibold text-secondary mb-3">
-                Этические факторы
+                Этические факторы / Ethical Factors
               </h3>
               <div className="grid gap-3">
                 {analysis.factors.map((factor, index) => (
@@ -172,7 +175,7 @@ export const EthicalAnalyzer = () => {
             {/* Рекомендации */}
             <div>
               <h3 className="text-lg font-semibold text-accent mb-3">
-                Рекомендации
+                Рекомендации / Recommendations
               </h3>
               <div className="space-y-2">
                 {analysis.recommendations.map((rec, index) => (
@@ -187,7 +190,7 @@ export const EthicalAnalyzer = () => {
             {/* Риски */}
             <div>
               <h3 className="text-lg font-semibold text-destructive mb-3">
-                Выявленные риски
+                Выявленные риски / Identified Risks
               </h3>
               <div className="space-y-2">
                 {analysis.risks.map((risk, index) => (
@@ -202,7 +205,7 @@ export const EthicalAnalyzer = () => {
             {/* Меры защиты */}
             <div>
               <h3 className="text-lg font-semibold text-primary mb-3">
-                Меры защиты
+                Меры защиты / Safeguards
               </h3>
               <div className="space-y-2">
                 {analysis.safeguards.map((safeguard, index) => (

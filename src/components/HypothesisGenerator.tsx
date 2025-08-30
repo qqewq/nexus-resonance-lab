@@ -107,16 +107,22 @@ export const HypothesisGenerator = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 gradient-text">
           <Lightbulb className="h-6 w-6" />
-          Генератор научных гипотез
+          <div>
+            <div>Генератор научных гипотез</div>
+            <div className="text-lg text-muted-foreground font-normal">Scientific Hypothesis Generator</div>
+          </div>
         </CardTitle>
         <div className="text-sm text-muted-foreground">
           Гибридная архитектура RL + GAN + Transformer
+          <span className="block text-xs mt-1 opacity-80">
+            Hybrid Architecture RL + GAN + Transformer
+          </span>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
           <label className="text-sm font-medium text-primary mb-2 block">
-            Описание научной проблемы
+            Описание научной проблемы / Scientific Problem Description
           </label>
           <Textarea
             placeholder="Опишите проблему, которую нужно решить..."
@@ -128,7 +134,7 @@ export const HypothesisGenerator = () => {
 
         <div>
           <label className="text-sm font-medium text-primary mb-2 block">
-            Домены для анализа
+            Домены для анализа / Domains for Analysis
           </label>
           <div className="flex flex-wrap gap-2">
             {domains.map(domain => (
@@ -154,12 +160,12 @@ export const HypothesisGenerator = () => {
           {isGenerating ? (
             <>
               <Brain className="h-4 w-4 animate-spin" />
-              Генерация гипотез...
+              Генерация гипотез... / Generating Hypotheses...
             </>
           ) : (
             <>
               <Zap className="h-4 w-4" />
-              Сгенерировать гипотезы
+              Сгенерировать гипотезы / Generate Hypotheses
             </>
           )}
         </Button>
@@ -167,7 +173,7 @@ export const HypothesisGenerator = () => {
         {hypotheses.length > 0 && (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-secondary">
-              Сгенерированные гипотезы
+              Сгенерированные гипотезы / Generated Hypotheses
             </h3>
             
             {hypotheses.map((hypothesis) => (
@@ -189,7 +195,7 @@ export const HypothesisGenerator = () => {
                       <div>
                         <div className="flex items-center gap-1 mb-1">
                           <CheckCircle className="h-3 w-3 text-accent" />
-                          <span className="text-muted-foreground">Уверенность</span>
+                          <span className="text-muted-foreground">Уверенность / Confidence</span>
                         </div>
                         <div className={`font-semibold ${getScoreColor(hypothesis.confidence)}`}>
                           {hypothesis.confidence}%
@@ -200,7 +206,7 @@ export const HypothesisGenerator = () => {
                       <div>
                         <div className="flex items-center gap-1 mb-1">
                           <AlertCircle className="h-3 w-3 text-primary" />
-                          <span className="text-muted-foreground">Этичность</span>
+                          <span className="text-muted-foreground">Этичность / Ethics</span>
                         </div>
                         <div className={`font-semibold ${getScoreColor(hypothesis.ethicalScore)}`}>
                           {hypothesis.ethicalScore}%
@@ -211,7 +217,7 @@ export const HypothesisGenerator = () => {
                       <div>
                         <div className="flex items-center gap-1 mb-1">
                           <Zap className="h-3 w-3 text-secondary" />
-                          <span className="text-muted-foreground">Резонанс</span>
+                          <span className="text-muted-foreground">Резонанс / Resonance</span>
                         </div>
                         <div className={`font-semibold ${getScoreColor(hypothesis.resonanceAlignment)}`}>
                           {hypothesis.resonanceAlignment}%
@@ -222,7 +228,7 @@ export const HypothesisGenerator = () => {
 
                     <div>
                       <h4 className="text-sm font-semibold text-primary mb-2">
-                        Путь к решению:
+                        Путь к решению / Solution Path:
                       </h4>
                       <ol className="space-y-1 text-sm text-muted-foreground">
                         {hypothesis.pathToSolution.map((step, index) => (

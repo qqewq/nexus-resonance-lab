@@ -94,7 +94,10 @@ export const InterdomainLearning = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 gradient-text">
           <Network className="h-6 w-6" />
-          Междоменное обучение ("Пена разума")
+          <div>
+            <div>Междоменное обучение ("Пена разума")</div>
+            <div className="text-lg text-muted-foreground font-normal">Interdomain Learning ("Mind Foam")</div>
+          </div>
         </CardTitle>
         <div className="text-sm text-muted-foreground math-formula">
           |Ψ<sub>пена</sub>⟩ = ∑ c<sub>i</sub> |ψ<sub>i</sub><sup>домен</sup>⟩ ⊗ |G<sub>общ</sub>⟩
@@ -126,7 +129,7 @@ export const InterdomainLearning = () => {
         {/* Домены знаний */}
         <div>
           <h3 className="text-lg font-semibold text-secondary mb-3">
-            Домены знаний
+            Домены знаний / Knowledge Domains
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {domains.map((domain, index) => (
@@ -138,7 +141,7 @@ export const InterdomainLearning = () => {
                       <span className="font-medium text-sm">{domain.name}</span>
                     </div>
                     <div className="text-xs text-muted-foreground">
-                      Знания: {domain.knowledge}%
+                      Знания / Knowledge: {domain.knowledge}%
                     </div>
                     <Progress value={domain.knowledge} className="h-1" />
                     <div className="flex flex-wrap gap-1">
@@ -166,12 +169,12 @@ export const InterdomainLearning = () => {
             {isLearning ? (
               <>
                 <Brain className="h-4 w-4 animate-spin" />
-                Обучение...
+                Обучение... / Learning...
               </>
             ) : (
               <>
                 <Shuffle className="h-4 w-4" />
-                Запустить обучение
+                Запустить обучение / Start Learning
               </>
             )}
           </Button>
@@ -183,7 +186,7 @@ export const InterdomainLearning = () => {
             <CardContent className="p-4">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Прогресс междоменного обучения</span>
+                  <span className="text-sm font-medium">Прогресс междоменного обучения / Interdomain Learning Progress</span>
                   <span className="text-sm text-muted-foreground">{learningProgress}%</span>
                 </div>
                 <Progress value={learningProgress} className="h-2" />
@@ -196,7 +199,7 @@ export const InterdomainLearning = () => {
         {insights.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold text-accent mb-3">
-              Полученные инсайты
+              Полученные инсайты / Generated Insights
             </h3>
             <div className="space-y-2">
               {insights.map((insight, index) => (
@@ -216,7 +219,7 @@ export const InterdomainLearning = () => {
         {/* Матрица связей */}
         <div>
           <h3 className="text-lg font-semibold text-primary mb-3">
-            Матрица междоменных связей
+            Матрица междоменных связей / Interdomain Connection Matrix
           </h3>
           <div className="overflow-x-auto">
             <div className="grid grid-cols-8 gap-1 text-xs">

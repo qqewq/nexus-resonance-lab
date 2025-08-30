@@ -76,7 +76,10 @@ export const ResonanceAnalyzer = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 gradient-text">
           <Zap className="h-6 w-6" />
-          Резонансный анализатор ГРА
+          <div>
+            <div>Резонансный анализатор ГРА</div>
+            <div className="text-lg text-muted-foreground font-normal">HRA Resonance Analyzer</div>
+          </div>
         </CardTitle>
         <div className="text-sm text-muted-foreground math-formula">
           ω<sub>рез</sub> = (1/D) ∑<sub>k=1</sub><sup>N</sup> (q<sub>k</sub>/m<sub>k</sub>)
@@ -86,7 +89,7 @@ export const ResonanceAnalyzer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="text-sm font-medium text-primary">
-              Фрактальная размерность (D)
+              Фрактальная размерность (D) / Fractal Dimension
             </label>
             <Input
               type="number"
@@ -98,7 +101,7 @@ export const ResonanceAnalyzer = () => {
           </div>
           <div>
             <label className="text-sm font-medium text-primary">
-              Квантовые свойства (q<sub>k</sub>)
+              Квантовые свойства (q<sub>k</sub>) / Quantum Properties
             </label>
             <Input
               placeholder="1.2, 0.8, 2.1"
@@ -112,7 +115,7 @@ export const ResonanceAnalyzer = () => {
           </div>
           <div>
             <label className="text-sm font-medium text-primary">
-              Эффективные массы (m<sub>k</sub>)
+              Эффективные массы (m<sub>k</sub>) / Effective Masses
             </label>
             <Input
               placeholder="0.5, 1.0, 0.3"
@@ -128,7 +131,7 @@ export const ResonanceAnalyzer = () => {
 
         <div className="flex items-center justify-between">
           <div className="text-lg font-semibold">
-            <span className="text-muted-foreground">Резонансная частота: </span>
+            <span className="text-muted-foreground">Резонансная частота / Resonance Frequency: </span>
             <span className="text-primary math-formula">
               {resonanceFrequency.toFixed(4)} Гц
             </span>
@@ -142,12 +145,12 @@ export const ResonanceAnalyzer = () => {
             {isAnalyzing ? (
               <>
                 <Brain className="h-4 w-4 animate-spin" />
-                Анализ...
+                Анализ... / Analyzing...
               </>
             ) : (
               <>
                 <Target className="h-4 w-4" />
-                Найти резонансы
+                Найти резонансы / Find Resonances
               </>
             )}
           </Button>
@@ -156,7 +159,7 @@ export const ResonanceAnalyzer = () => {
         {resonancePoints.length > 0 && (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-secondary">
-              Критические резонансные точки
+              Критические резонансные точки / Critical Resonance Points
             </h3>
             <div className="grid gap-3">
               {resonancePoints.map((point, index) => (
