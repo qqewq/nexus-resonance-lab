@@ -17,6 +17,10 @@ interface FoamState {
   amplitude: number;
   phase: number;
   entanglement: number;
+  coherence: number; // 0.0-1.0 for knowledge consistency
+  depthPenetration: number; // 0-10 depth of understanding
+  growthPotential: number; // 0-100% potential for development
+  timestamp: number; // temporal component
 }
 
 export const InterdomainLearning = () => {
@@ -34,7 +38,11 @@ export const InterdomainLearning = () => {
     psi: "|Ψ_пена⟩",
     amplitude: 0.75,
     phase: 0,
-    entanglement: 65
+    entanglement: 65,
+    coherence: 0.8,
+    depthPenetration: 6.5,
+    growthPotential: 85,
+    timestamp: Date.now()
   });
 
   const [isLearning, setIsLearning] = useState(false);
@@ -42,14 +50,28 @@ export const InterdomainLearning = () => {
   const [insights, setInsights] = useState<string[]>([]);
 
   useEffect(() => {
-    // Анимация квантового состояния
+    // Enhanced temporal evolution with dynamic amplitude correction
     const interval = setInterval(() => {
-      setFoamState(prev => ({
-        ...prev,
-        phase: (prev.phase + 0.1) % (2 * Math.PI),
-        amplitude: 0.7 + 0.1 * Math.sin(prev.phase),
-        entanglement: 60 + 10 * Math.sin(prev.phase * 0.5)
-      }));
+      setFoamState(prev => {
+        const t = Date.now();
+        const deltaT = (t - prev.timestamp) / 1000;
+        const alpha = 0.1;
+        const coherenceTarget = 0.9;
+        
+        // A(t) = A₀ + α·(Γ(t) - Γ₀)·t
+        const newAmplitude = prev.amplitude + alpha * (prev.coherence - coherenceTarget) * deltaT;
+        
+        return {
+          ...prev,
+          phase: (prev.phase + 0.1) % (2 * Math.PI),
+          amplitude: Math.max(0.1, Math.min(1.0, newAmplitude)),
+          entanglement: 60 + 10 * Math.sin(prev.phase * 0.5),
+          coherence: Math.max(0, Math.min(1, prev.coherence + (Math.random() - 0.5) * 0.02)),
+          depthPenetration: Math.max(0, Math.min(10, prev.depthPenetration + (Math.random() - 0.5) * 0.1)),
+          growthPotential: Math.max(0, Math.min(100, prev.growthPotential + (Math.random() - 0.5))),
+          timestamp: t
+        };
+      });
     }, 100);
 
     return () => clearInterval(interval);
@@ -99,8 +121,9 @@ export const InterdomainLearning = () => {
             <div className="text-lg text-muted-foreground font-normal">Interdomain Learning ("Mind Foam")</div>
           </div>
         </CardTitle>
-        <div className="text-sm text-muted-foreground math-formula">
-          |Ψ<sub>пена</sub>⟩ = ∑ c<sub>i</sub> |ψ<sub>i</sub><sup>домен</sup>⟩ ⊗ |G<sub>общ</sub>⟩
+        <div className="text-sm text-muted-foreground math-formula space-y-1">
+          |Ψ<sub>пена</sub>(t)⟩ = ∑ c<sub>i</sub>(t)|ψ<sub>i</sub><sup>домен</sup>⟩ ⊗ |G<sub>общ</sub>⟩
+          <div className="text-xs text-accent">A(t) = A₀ + α·(Γ(t) - Γ₀)·t</div>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -111,10 +134,23 @@ export const InterdomainLearning = () => {
               <div className="text-lg font-mono quantum-wave">
                 {foamState.psi}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Амплитуда: {foamState.amplitude.toFixed(3)} | 
-                Фаза: {foamState.phase.toFixed(2)} | 
-                Запутанность: {foamState.entanglement.toFixed(1)}%
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                <div className="bg-muted/30 p-2 rounded">
+                  <div>Амплитуда / Amplitude</div>
+                  <div className="font-mono text-primary">{foamState.amplitude.toFixed(3)}</div>
+                </div>
+                <div className="bg-muted/30 p-2 rounded">
+                  <div>Когерентность / Coherence</div>
+                  <div className="font-mono text-secondary">{foamState.coherence.toFixed(3)}</div>
+                </div>
+                <div className="bg-muted/30 p-2 rounded">
+                  <div>Глубина / Depth</div>
+                  <div className="font-mono text-accent">{foamState.depthPenetration.toFixed(1)}</div>
+                </div>
+                <div className="bg-muted/30 p-2 rounded">
+                  <div>Потенциал / Potential</div>
+                  <div className="font-mono text-primary">{foamState.growthPotential.toFixed(0)}%</div>
+                </div>
               </div>
               <div className="w-full bg-muted/50 rounded-full h-2">
                 <div 

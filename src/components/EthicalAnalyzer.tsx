@@ -18,6 +18,11 @@ interface EthicalAnalysis {
   recommendations: string[];
   risks: string[];
   safeguards: string[];
+  // Multi-level ethical evaluation
+  basicLevel: number;     // Γ₁ = ∑ sign(dI_i/dt)·γ_ij
+  contextualLevel: number; // Γ₂ = Γ₁·C(x)
+  longTermLevel: number;   // Γ₃ = ∫₀^T Γ₁(t)·e^(-λt) dt
+  realTimeMonitoring: number; // dΓ/dt
 }
 
 export const EthicalAnalyzer = () => {
@@ -28,37 +33,54 @@ export const EthicalAnalyzer = () => {
   const runEthicalAnalysis = async () => {
     setIsAnalyzing(true);
     
-    // Симуляция этического анализа
-    await new Promise(resolve => setTimeout(resolve, 2500));
+    // Simulate analysis time
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Enhanced multi-level ethical analysis
+    const basicLevel = 0.75; // Γ₁ = ∑ sign(dI_i/dt)·γ_ij
+    const contextMultiplier = hypothesis.includes("nanobot") || hypothesis.includes("наноботы") ? 1.2 : 1.0;
+    const contextualLevel = basicLevel * contextMultiplier; // Γ₂ = Γ₁·C(x)
+    const timeDecay = 0.95; // λ parameter for long-term evaluation
+    const longTermLevel = contextualLevel * timeDecay; // Simplified Γ₃
+    const realTimeMonitoring = (contextualLevel - basicLevel) / 1; // dΓ/dt approximation
+    
+    // For medical tasks, increase ethical threshold to Γ > 0.9
+    const medicalTaskBonus = hypothesis.toLowerCase().includes("medic") || hypothesis.includes("медицин") ? 0.1 : 0;
+    const finalScore = Math.min(98, (longTermLevel + medicalTaskBonus) * 100);
     
     const mockAnalysis: EthicalAnalysis = {
-      totalScore: 78,
+      totalScore: finalScore,
+      basicLevel,
+      contextualLevel,
+      longTermLevel,
+      realTimeMonitoring,
       factors: [
-        { name: "Безопасность для человека", value: 85, weight: 0.3, impact: "positive" },
-        { name: "Экологическое воздействие", value: 72, weight: 0.2, impact: "positive" },
-        { name: "Социальная справедливость", value: 88, weight: 0.2, impact: "positive" },
-        { name: "Потенциальное злоупотребление", value: 25, weight: 0.15, impact: "negative" },
-        { name: "Экономическая доступность", value: 65, weight: 0.15, impact: "neutral" }
+        { name: "Безопасность / Safety", value: 95, weight: 0.3, impact: "positive" },
+        { name: "Конфиденциальность / Privacy", value: 85, weight: 0.25, impact: "positive" },
+        { name: "Справедливость / Fairness", value: 88, weight: 0.2, impact: "positive" },
+        { name: "Прозрачность / Transparency", value: 82, weight: 0.15, impact: "neutral" },
+        { name: "Подотчетность / Accountability", value: 90, weight: 0.1, impact: "positive" },
+        { name: "Долгосрочные последствия / Long-term Impact", value: longTermLevel * 100, weight: 0.25, impact: "positive" },
       ],
       recommendations: [
-        "Усилить протоколы безопасности на всех этапах разработки",
-        "Создать независимый комитет по этике для наблюдения",
-        "Разработать план обеспечения доступности технологии",
-        "Установить строгие ограничения на использование"
+        "Внедрить многоуровневую систему этического контроля / Implement multi-level ethical control system",
+        "Настроить мониторинг в реальном времени (dΓ/dt) / Set up real-time monitoring (dΓ/dt)",
+        "Повысить порог для медицинских задач до Γ > 0.9 / Raise threshold for medical tasks to Γ > 0.9",
+        "Добавить контекстуальную корректировку C(x) / Add contextual adjustment C(x)"
       ],
       risks: [
-        "Возможность неконтролируемого распространения технологии",
-        "Потенциальное неравенство в доступе к решению",
-        "Непредвиденные долгосрочные последствия"
+        "Превышение этического порога при медицинских применениях / Exceeding ethical threshold in medical applications",
+        "Временная деградация этических показателей / Temporal degradation of ethical metrics",
+        "Контекстуальные искажения в оценке / Contextual distortions in evaluation"
       ],
       safeguards: [
-        "Многоуровневая система контроля доступа",
-        "Постоянный мониторинг применения",
-        "Механизм экстренной остановки",
-        "Регулярные этические аудиты"
+        "Автоматическое отключение при Γ < 0.7 / Automatic shutdown when Γ < 0.7",
+        "Интегральная оценка долгосрочных последствий / Integral long-term impact assessment",
+        "Адаптивная корректировка весов γ_ij / Adaptive weight adjustment γ_ij",
+        "Непрерывный мониторинг dΓ/dt в реальном времени / Continuous real-time dΓ/dt monitoring"
       ]
     };
-
+    
     setAnalysis(mockAnalysis);
     setIsAnalyzing(false);
   };
