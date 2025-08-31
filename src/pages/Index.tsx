@@ -8,6 +8,8 @@ import { HypothesisGenerator } from "@/components/HypothesisGenerator";
 import { EthicalAnalyzer } from "@/components/EthicalAnalyzer";
 import { InterdomainLearning } from "@/components/InterdomainLearning";
 import { ProblemFormulation } from "@/components/ProblemFormulation";
+import { Enhanced3DVisualization } from "@/components/Enhanced3DVisualization";
+import { PublicationIntegration } from "@/components/PublicationIntegration";
 import { Brain, Zap, Target, Network, Shield, Atom, Lightbulb, Rocket, FileText } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -96,7 +98,7 @@ const Index = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 mb-8">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-8 mb-8">
             <TabsTrigger value="formulation" className="text-xs flex flex-col">
               <FileText className="h-4 w-4 mb-1" />
               <span>Постановка</span>
@@ -126,6 +128,16 @@ const Index = () => {
               <Network className="h-4 w-4 mb-1" />
               <span>Обучение</span>
               <span className="text-[10px] opacity-70">Learning</span>
+            </TabsTrigger>
+            <TabsTrigger value="visualization" className="text-xs flex flex-col">
+              <Atom className="h-4 w-4 mb-1" />
+              <span>3D Визуализация</span>
+              <span className="text-[10px] opacity-70">3D Visualization</span>
+            </TabsTrigger>
+            <TabsTrigger value="publications" className="text-xs flex flex-col">
+              <FileText className="h-4 w-4 mb-1" />
+              <span>Публикации</span>
+              <span className="text-[10px] opacity-70">Publications</span>
             </TabsTrigger>
           </TabsList>
 
@@ -293,6 +305,14 @@ const Index = () => {
 
           <TabsContent value="learning">
             <InterdomainLearning />
+          </TabsContent>
+
+          <TabsContent value="visualization">
+            <Enhanced3DVisualization />
+          </TabsContent>
+
+          <TabsContent value="publications">
+            <PublicationIntegration />
           </TabsContent>
         </Tabs>
       </section>
