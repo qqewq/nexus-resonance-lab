@@ -11,6 +11,7 @@ import { ProblemFormulation } from "@/components/ProblemFormulation";
 import { Enhanced3DVisualization } from "@/components/Enhanced3DVisualization";
 import { PublicationIntegration } from "@/components/PublicationIntegration";
 import { AutoFormulation } from "@/components/AutoFormulation";
+import { AutoDomainSelection } from "@/components/AutoDomainSelection";
 import { Brain, Zap, Target, Network, Shield, Atom, Lightbulb, Rocket, FileText } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -99,11 +100,16 @@ const Index = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-9 mb-8">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-10 mb-8">
             <TabsTrigger value="auto-formulation" className="text-xs flex flex-col">
               <Brain className="h-4 w-4 mb-1" />
               <span>Авто-постановка</span>
               <span className="text-[10px] opacity-70">Auto-formulation</span>
+            </TabsTrigger>
+            <TabsTrigger value="auto-domains" className="text-xs flex flex-col">
+              <Atom className="h-4 w-4 mb-1" />
+              <span>Авто-домены</span>
+              <span className="text-[10px] opacity-70">Auto-domains</span>
             </TabsTrigger>
             <TabsTrigger value="formulation" className="text-xs flex flex-col">
               <FileText className="h-4 w-4 mb-1" />
@@ -149,6 +155,10 @@ const Index = () => {
 
           <TabsContent value="auto-formulation">
             <AutoFormulation />
+          </TabsContent>
+
+          <TabsContent value="auto-domains">
+            <AutoDomainSelection />
           </TabsContent>
 
           <TabsContent value="formulation">
