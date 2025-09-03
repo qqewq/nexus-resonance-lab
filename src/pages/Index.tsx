@@ -13,11 +13,14 @@ import { PublicationIntegration } from "@/components/PublicationIntegration";
 import { AutoFormulation } from "@/components/AutoFormulation";
 import { AutoDomainSelection } from "@/components/AutoDomainSelection";
 import AutoVerification from "@/components/AutoVerification";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Brain, Zap, Target, Network, Shield, Atom, Lightbulb, Rocket, FileText } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("overview");
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">
@@ -34,6 +37,10 @@ const Index = () => {
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
         
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+          <div className="flex justify-end mb-4">
+            <LanguageToggle />
+          </div>
+          
           <div className="quantum-wave">
             <Brain className="h-16 w-16 text-primary mx-auto mb-6" />
           </div>
@@ -104,18 +111,15 @@ const Index = () => {
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-11 mb-8">
             <TabsTrigger value="auto-formulation" className="text-xs flex flex-col">
               <Brain className="h-4 w-4 mb-1" />
-              <span>Авто-постановка</span>
-              <span className="text-[10px] opacity-70">Auto-formulation</span>
+              <span>{t('tabs.autoFormulation')}</span>
             </TabsTrigger>
             <TabsTrigger value="auto-domains" className="text-xs flex flex-col">
               <Atom className="h-4 w-4 mb-1" />
-              <span>Авто-домены</span>
-              <span className="text-[10px] opacity-70">Auto-domains</span>
+              <span>{t('tabs.autoDomains')}</span>
             </TabsTrigger>
             <TabsTrigger value="auto-verification" className="text-xs flex flex-col">
               <Target className="h-4 w-4 mb-1" />
-              <span>Авто-верификация</span>
-              <span className="text-[10px] opacity-70">Auto-verification</span>
+              <span>{t('tabs.autoVerification')}</span>
             </TabsTrigger>
             <TabsTrigger value="formulation" className="text-xs flex flex-col">
               <FileText className="h-4 w-4 mb-1" />

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Brain, Target, Shield, Zap, FileText, Lightbulb } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FormalGoal {
   objective: string;
@@ -28,6 +29,7 @@ export const AutoFormulation = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [formalGoal, setFormalGoal] = useState<FormalGoal | null>(null);
   const [processingStep, setProcessingStep] = useState("");
+  const { t } = useLanguage();
 
   const ALL_DOMAINS = [
     { name: "Генетика", keywords: ["ген", "ДНК", "наследственность", "мутация", "эволюция"] },
@@ -241,20 +243,19 @@ export const AutoFormulation = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Brain className="h-5 w-5 text-primary" />
-            Автоматическая формализация научных задач
+            {t('autoFormulation.title')}
           </CardTitle>
           <CardDescription>
-            Введите вашу исследовательскую цель на естественном языке, и система автоматически 
-            извлечет формальные требования, выберет оптимальные домены знаний и определит метрики успеха.
+            {t('autoFormulation.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">
-              Описание исследовательской задачи на естественном языке:
+              {t('autoFormulation.inputLabel')}:
             </label>
             <Textarea
-              placeholder="Например: 'Найти способ увеличения срока жизни человека на 20% через комбинацию генетических и технологических методов с учетом этических ограничений'"
+              placeholder={t('autoFormulation.inputPlaceholder')}
               value={naturalInput}
               onChange={(e) => setNaturalInput(e.target.value)}
               className="min-h-24"
