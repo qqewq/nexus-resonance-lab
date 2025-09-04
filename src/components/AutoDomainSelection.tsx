@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Slider } from "@/components/ui/slider";
 import { Brain, Zap, Target, Atom, Network, Lightbulb, Play, Pause } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface Domain {
   id: string;
@@ -40,6 +41,7 @@ interface MindFoamState {
 }
 
 export const AutoDomainSelection = () => {
+  const { t } = useLanguage();
   const [targetGoal, setTargetGoal] = useState("");
   const [domains, setDomains] = useState<Domain[]>([]);
   const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
@@ -341,11 +343,10 @@ export const AutoDomainSelection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Atom className="h-5 w-5 text-primary" />
-            Автоматический выбор доменов через резонансный анализ
+            {t('autoDomains.title')}
           </CardTitle>
           <CardDescription>
-            Система автоматически выбирает оптимальные домены знаний на основе резонансных частот,
-            семантической близости и квантовых корреляций для достижения целевой вероятности успеха.
+            {t('autoDomains.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

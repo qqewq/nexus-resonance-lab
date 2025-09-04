@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Brain, CheckCircle, AlertTriangle, BarChart3, Shield, Zap } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface ExperimentResult {
   id: string;
@@ -38,6 +39,7 @@ interface VerificationResult {
 }
 
 const AutoVerification = () => {
+  const { t } = useLanguage();
   const [hypothesis, setHypothesis] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -264,11 +266,11 @@ const AutoVerification = () => {
         <CardHeader className="flex flex-row items-center space-y-0 pb-2">
           <div className="flex items-center space-x-2">
             <Brain className="h-5 w-5 text-primary" />
-            <CardTitle>Автоматическая верификация гипотез</CardTitle>
+            <CardTitle>{t('autoVerification.title')}</CardTitle>
           </div>
         </CardHeader>
         <CardDescription className="px-6 pb-4">
-          Система автоматически проводит виртуальные эксперименты, резонансный анализ и этическую оценку для верификации научных гипотез.
+          {t('autoVerification.description')}
         </CardDescription>
         <CardContent className="space-y-4">
           <div>
