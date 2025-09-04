@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Brain, Target, Shield, Zap, FileText, Lightbulb } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface FormalGoal {
   objective: string;
@@ -270,12 +270,12 @@ export const AutoFormulation = () => {
             {isProcessing ? (
               <>
                 <Zap className="mr-2 h-4 w-4 animate-spin" />
-                Формализация...
+                {t('autoFormulation.analyzing')}
               </>
             ) : (
               <>
                 <Target className="mr-2 h-4 w-4" />
-                Автоматически формализовать задачу
+                {t('autoFormulation.analyzeButton')}
               </>
             )}
           </Button>
@@ -296,10 +296,10 @@ export const AutoFormulation = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5 text-primary" />
-              Формализованная научная задача
+              {t('autoFormulation.results')}
             </CardTitle>
             <CardDescription>
-              Автоматически извлеченные параметры исследования
+              {t('autoFormulation.description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
